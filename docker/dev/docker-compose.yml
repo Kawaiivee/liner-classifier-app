@@ -1,0 +1,29 @@
+version: '3'
+services:
+  cat-dog-classifier:
+    container_name: cat-dog-classifier
+    networks:
+      - classifier-network
+    tty: true
+    build:
+      context: '../../cat-dog-classifier'
+      dockerfile: Dockerfile
+    ports:
+      - 8274:8274
+    environment:
+      - PORT=8274
+  valorant-classifier:
+    container_name: valorant-classifier
+    networks:
+      - classifier-network
+    tty: true
+    build:
+        context: '../../valorant-classifier'
+        dockerfile: Dockerfile
+    ports:
+      - 8276:8276
+    environment:
+      - PORT=8276
+networks:
+  classifier-network:
+    driver: bridge
